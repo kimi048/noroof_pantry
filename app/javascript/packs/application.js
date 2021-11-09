@@ -10,12 +10,9 @@ import "channels"
 import 'bootstrap';
 import '../stylesheets/application';
 import "jquery";
-global.$ =jQuery;
-//import "bootstrap-sprockets"
 import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap'
 import './test.js'
-// require("bootstrap/dist/js/bootstrap")
 
 
 Rails.start()

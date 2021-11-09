@@ -1,0 +1,26 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <th scope="row"><%= @user.id %></th>
+          <td><%= @user.id %></td>
+          <td><%= @user.email %></td>
+          <td><%= @user.username %></td>
+        </tr>
+        
+      
+    </tbody>
+  </table>
+  <% @user.foods.each do |food| %>
+    <p><%= food.description %></p>
+  <% end %>
+</div>

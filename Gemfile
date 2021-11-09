@@ -6,6 +6,7 @@ ruby '2.6.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 gem "nokogiri", ">= 1.6.7.rc"
+#gem 'bootstrap', '~> 4.3.1'
 # Use sqlite3 as the database for Active Record
 
 # Use Puma as the app server
