@@ -1,0 +1,28 @@
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <th scope="row"><%= @food.id %></th>
+          <td><%= @food.description %></td>
+          <td><%= @food.user_id %></td>
+          <td><% if @food.image? %>
+          <%= image_tag @food.image.url %>
+        <% else %>
+          <%= image_tag "https://via.placeholder.com/150" %>
+        <% end %>
+        </td>
+        </tr>
+    </tbody>
+  </table>
+
+</div>

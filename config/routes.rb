@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   root 'pages#home'
   get "about", to: "pages#about"
   resources :users
+  resources :foods, only: [:index, :show, :edit, :update, :new, :create, :destroy]
   #post "users/new", to: 'users#create'
 end
