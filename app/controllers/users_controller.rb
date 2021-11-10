@@ -9,18 +9,26 @@ class UsersController < ApplicationController
     @user=User.new
   end
   def create
-    @user = User.new user_params
-    @user.save
-    redirect_to users_path
+    @user = User.new(user_params)
+    if @user.save
+      flash[:notice]="Welcome to NoRooF #{@user.username}"
+      redirect_to users_path
+    else
+      flash.now[:alert] = "エラー発生"
+      render 'new'
+    end
   end
   def edit
     @user = User.find(params[:id])
   end
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    flash[:notice] = "User was updated successfully."
-    redirect_to users_path
+    if @user.update(user_params)
+      flash[:notice] = "User was updated successfully."
+      redirect_to users_path
+    else
+      render 'edit'
+    end
   end
   def destroy
     @user = User.find(params[:id])
@@ -29,6 +37,6 @@ class UsersController < ApplicationController
   end
   private
   def user_params
-    params.require(:user).permit(:username, :email)
+    params.require(:user).permit(:username, :email, :password)
   end
 end
