@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "home", to: "pages#home"
   get "foods/:when/:which", to: "foods#whenwhich"
   get "foods/wwindex", to:"foods#wwindex"
+  post "foods/:when/:which", to:"foods#wwcreate"
   resources :users
   resources :foods, only: [:index, :show, :edit, :update, :new, :create, :destroy]
   #post "users/new", to: 'users#create'

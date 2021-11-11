@@ -1,10 +1,21 @@
 class FoodsController < ApplicationController
   before_action :require_user
   def whenwhich
+    @food=Food.new
     @which = params[:which]
-    @when = params[:when]
+    @when = params[:when].to_i
   end
   def wwindex
+  end
+  def wwcreate
+    @which = params[:which]
+    @when = params[:when].to_i
+    @food = Food.new(food_params)
+    @food.user_id = current_user.id
+    @food.when = @when
+    @food.which = @which
+    @food.save
+    redirect_to foods_path
   end
   def index
     @foods=Food.all
@@ -13,7 +24,10 @@ class FoodsController < ApplicationController
     @food = Food.new
   end
   def create
-    @food = Food.new food_params
+    @which = params[:which]
+    @when = params[:when].to_i
+    @food = Food.new(food_params)
+    @food.user_id = current_user.id    
     @food.save
     redirect_to foods_path
   end
@@ -36,6 +50,6 @@ class FoodsController < ApplicationController
   end
 private
   def food_params
-    params.require(:food).permit(:description, :user_id, :image)
+    params.require(:food).permit(:description, :user_id, :image, :when, :which)
   end
 end
