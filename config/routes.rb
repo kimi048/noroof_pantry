@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'sessions#new'
   get "about", to: "pages#about"
+  get "home", to: "pages#home"
+  get "foods/:when/:which", to: "foods#whenwhich"
+  get "foods/wwindex", to:"foods#wwindex"
   resources :users
   resources :foods, only: [:index, :show, :edit, :update, :new, :create, :destroy]
   #post "users/new", to: 'users#create'
@@ -9,4 +12,5 @@ Rails.application.routes.draw do
   get 'login', to:'sessions#new'
   post 'login', to:'sessions#create'
   delete 'logout', to:'sessions#destroy'
+  get '*unmatched_route', to: 'application#unmatched'
 end

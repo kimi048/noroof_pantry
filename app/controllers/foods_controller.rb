@@ -1,4 +1,11 @@
 class FoodsController < ApplicationController
+  before_action :require_user
+  def whenwhich
+    @which = params[:which]
+    @when = params[:when]
+  end
+  def wwindex
+  end
   def index
     @foods=Food.all
   end

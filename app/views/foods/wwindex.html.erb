@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>whenwhich is here</h2>
+  <% (18..23).each do |n|%>
+    <p><%= n %>日
+      <% case n %>
+        <% when 18 then  %>
+          (木)
+        <% when 19 then  %>
+          (金)
+        <% when 20 then  %>
+          (土)
+        <% when 21 then  %>
+          (日)
+        <% when 22 then  %>
+          (月)
+        <% when 23 then  %>
+          (火)
+      <% end%>
+    </p>
+    <div class="row">
+      <a class="col-3 btn btn-success mr-5" href="/foods/<%= n %>/breakfast">朝</a>
+      <a class="col-3 btn btn-success mr-5" href="/foods/<%= n %>/lunch">昼</a>
+      <a class="col-3 btn btn-success" href="/foods/<%= n %>/dinner">夕</a>
+    </div>
+    <hr>
+  <% end %>
+</div>
