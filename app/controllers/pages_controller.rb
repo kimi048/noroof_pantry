@@ -4,4 +4,6 @@ class PagesController < ApplicationController
   end
   def about
   end
+  def date
+  end
 end

@@ -15,7 +15,7 @@ class FoodsController < ApplicationController
     @food.when = @when
     @food.which = @which
     @food.save
-    redirect_to foods_path
+    redirect_to user_path(current_user)
   end
   def index
     @foods=Food.all
@@ -29,7 +29,7 @@ class FoodsController < ApplicationController
     @food = Food.new(food_params)
     @food.user_id = current_user.id    
     @food.save
-    redirect_to foods_path
+    redirect_to user_path(current_user)
   end
   def edit
     @food = Food.find(params[:id]) 

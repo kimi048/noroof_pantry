@@ -1,0 +1,45 @@
+
+<div class="container">
+  <h2><%= @date %>日</h2>
+  <%=  @users.first.foods.where(when:23).last.description %>
+  <% @users.each do|user|%>
+    <div class="row">
+      
+      <div class="col-md-4 col-12">
+      User-ID:<%= user.id %>
+        <%if user.foods.where(when: @date).where(which:"breakfast").last %>
+          <br><strong>朝食</strong><br>
+          <% if user.foods.where(when: @date).where(which:"breakfast").last.image? %>
+            <%= image_tag user.foods.where(when: @date).where(which:"breakfast").last.image.url, width:"100%" %>  
+            <% else %>
+            <%= image_tag "noimage.png" , width:"100%"%>
+          <% end%>
+        <% end %>
+        <%= safe_join(user.foods.where(when: @date).where(which:"breakfast").last.description.split("\n"),tag(:br)) if user.foods.where(when: @date).where(which:"breakfast").last%>
+      </div>
+      <div class="col-md-4 col-12">
+        <% if user.foods.where(when: @date).where(which:"lunch").last %>
+          <br><strong>昼食</strong><br>
+          <% if user.foods.where(when: @date).where(which:"lunch").last.image? %>
+            <%= image_tag user.foods.where(when: @date).where(which:"lunch").last.image.url, width:"100%" %> 
+            <% else %>
+            <%= image_tag "noimage.png" , width:"100%"%>
+          <% end%>
+        <% end %>
+        <%= safe_join(user.foods.where(when: @date).where(which:"lunch").last.description.split("\n"),tag(:br)) if user.foods.where(when: @date).where(which:"lunch").last%>
+      </div>
+      <div class="col-md-4 col-12">
+        <% if user.foods.where(when: @date).where(which:"dinner").last %>
+          <br><strong>夕食</strong><br>
+          <% if user.foods.where(when: @date).where(which:"dinner").last.image? %>
+            <%= image_tag user.foods.where(when: @date).where(which:"dinner").last.image.url, width:"100%" %> 
+            <% else %>
+            <%= image_tag "noimage.png", width:"100%" %>
+          <% end%>
+        <% end %>
+        <%= safe_join(user.foods.where(when: @date).where(which:"dinner").last.description.split("\n"),tag(:br)) if user.foods.where(when: @date).where(which:"dinner").last%>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+</div>

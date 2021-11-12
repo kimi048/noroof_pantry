@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   root 'sessions#new'
   get "about", to: "pages#about"
   get "home", to: "pages#home"
+  get "date", to: "pages#date"
   get "foods/:when/:which", to: "foods#whenwhich"
   get "foods/wwindex", to:"foods#wwindex"
   post "foods/:when/:which", to:"foods#wwcreate"
+  get "users/all/:date", to:"users#allusersfoods"
   resources :users
   resources :foods, only: [:index, :show, :edit, :update, :new, :create, :destroy]
   #post "users/new", to: 'users#create'
@@ -13,5 +15,7 @@ Rails.application.routes.draw do
   get 'login', to:'sessions#new'
   post 'login', to:'sessions#create'
   delete 'logout', to:'sessions#destroy'
+
+  #unmatched route
   get '*unmatched_route', to: 'application#unmatched'
 end

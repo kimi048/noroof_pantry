@@ -1,7 +1,8 @@
 <div class="container">
   <h2>This is home</h2>
-  <a href="/#" role="button" class="btn btn-success btn-lg btn-block mb-8">食事を記録する</a>
-  <a href="/#" role="button" class="btn btn-success btn-lg btn-block mb-8">みんなの食事一覧</a>
-  <a href="/#" role="button" class="btn btn-success btn-lg btn-block mb-8">自分の食事記録を見る</a>
+  <a href="/foods/wwindex" role="button" class="btn btn-success btn-lg btn-block mb-8">食事を記録する</a>
+  <%= link_to 'みんなの食事記録', foods_path, class: "btn btn-success btn-lg btn-block mb-8" %>
+  <%= link_to '自分の食事記録を見る', user_path(current_user.id), class: "btn btn-success btn-lg btn-block mb-8" %>
+  <%= link_to 'Users path', users_path, class: "btn btn-success btn-lg btn-block mb-8" %>
   <a href="/#" role="button" class="btn btn-success btn-lg btn-block mb-8">週一のおすすめレシピ(XX日予定)</a>
 </div>
