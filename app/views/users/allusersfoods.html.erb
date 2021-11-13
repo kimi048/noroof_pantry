@@ -1,10 +1,8 @@
 
 <div class="container">
   <h2><%= @date %>日</h2>
-  <%=  @users.first.foods.where(when:23).last.description %>
   <% @users.each do|user|%>
     <div class="row">
-      
       <div class="col-md-4 col-12">
       User-ID:<%= user.id %>
         <%if user.foods.where(when: @date).where(which:"breakfast").last %>
@@ -40,6 +38,7 @@
         <%= safe_join(user.foods.where(when: @date).where(which:"dinner").last.description.split("\n"),tag(:br)) if user.foods.where(when: @date).where(which:"dinner").last%>
       </div>
     </div>
+      <p>ここに栄養情報を入れる</p>
     <hr>
   <% end %>
 </div>

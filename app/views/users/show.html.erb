@@ -20,15 +20,12 @@
       
     </tbody>
   </table>
-  <% @user.foods.each do |food| %>
-    <hr>
-  <% end %>
   
-  <% @foods=Array[@food18a,@food18b,@food18c,@food19a,@food19b,@food19c,@food20a,@food20b,@food20c,@food21a,@food21b,@food21c,@food22a,@food22b,@food22c,@food23a,@food23b,@food23c]%>
+  
   <% count = 0 %>
   <% date = 17 %>
   <% for food in @foods %>
-    <% if count%3==0 %>
+    <% if count%3 == 0 %>
       <% date=date+1 %>
       <h2><%= date %>日</h2>
     <% end %>
@@ -36,13 +33,13 @@
     
     <div class="card" style="width: 15rem;">
       <% if food.image? %>
-        <image_tag food.image.url ,width:"100%" ,class="card-img-top">
+        <%= image_tag food.image.url , width:"100%" , class:"card-img-top" %>
         <% else %>
-        <image_tag "noimage.png", width:"100%">
+        <%= image_tag "noimage.png", width:"100%" %>
       <% end %>
       
       <div class="card-body">
-        <p class="card-text"><%= date %>日
+        <p class="card-text"><strong><%= date %>日
         <% case food.which %>
           <% when "breakfast" then %>
           朝食
@@ -51,8 +48,9 @@
           <% when "dinner" then %>
           夕食
         <% end %>
+        </strong>
         <br>
-        <%= food.description %></p>
+        <%= safe_join(food.description.split("\n"),tag(:br)) %></p>
       </div>
     </div> 
     <br>

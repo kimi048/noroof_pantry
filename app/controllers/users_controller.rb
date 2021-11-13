@@ -6,32 +6,15 @@ class UsersController < ApplicationController
   def allusersfoods
     @date=params[:date]
     @users=User.all
-    # id=[]
-    # @users.each do |user|
-      
-    # end
-    
   end
   def show
     @user=User.find(params[:id])
-    @food18a=Food.where(user_id: @user.id).where(when: 18).where(which: "breakfast").last
-    @food18b=Food.where(user_id: @user.id).where(when: 18).where(which: "lunch").last
-    @food18c=Food.where(user_id: @user.id).where(when: 18).where(which: "dinner").last
-    @food19a=Food.where(user_id: @user.id).where(when: 19).where(which: "breakfast").last
-    @food19b=Food.where(user_id: @user.id).where(when: 19).where(which: "lunch").last
-    @food19c=Food.where(user_id: @user.id).where(when: 19).where(which: "dinner").last
-    @food20a=Food.where(user_id: @user.id).where(when: 20).where(which: "breakfast").last
-    @food20b=Food.where(user_id: @user.id).where(when: 20).where(which: "lunch").last
-    @food20c=Food.where(user_id: @user.id).where(when: 20).where(which: "dinner").last
-    @food21a=Food.where(user_id: @user.id).where(when: 21).where(which: "breakfast").last
-    @food21b=Food.where(user_id: @user.id).where(when: 21).where(which: "lunch").last
-    @food21c=Food.where(user_id: @user.id).where(when: 21).where(which: "dinner").last
-    @food22a=Food.where(user_id: @user.id).where(when: 22).where(which: "breakfast").last
-    @food22b=Food.where(user_id: @user.id).where(when: 22).where(which: "lunch").last
-    @food22c=Food.where(user_id: @user.id).where(when: 22).where(which: "dinner").last
-    @food23a=Food.where(user_id: @user.id).where(when: 23).where(which: "breakfast").last
-    @food23b=Food.where(user_id: @user.id).where(when: 23).where(which: "lunch").last
-    @food23c=Food.where(user_id: @user.id).where(when: 23).where(which: "dinner").last
+    @foods=[]
+    (18..23).each do |num|
+      @foods.concat([Food.where(user_id: @user.id).where(when: num).where(which: "breakfast").last])
+      @foods.concat([Food.where(user_id: @user.id).where(when: num).where(which: "lunch").last])
+      @foods.concat([Food.where(user_id: @user.id).where(when: num).where(which: "dinner").last])
+    end
   end
   def new 
     @user=User.new

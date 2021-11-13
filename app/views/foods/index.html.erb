@@ -1,15 +1,14 @@
 
 
 <div class="container">
-<h1>Foods#index</h1>
-<p>Find me in app/views/foods/index.html.erb</p>
-<h2>this is food index page</h2>
+<h2 class="mb-5 mt-5">みんなの食事(投稿順)</h2>
   <table class="table">
     <thead>
       <tr>
         <th scope="col">id</th>
-        <th scope="col">Description</th>
         <th scope="col">User-id</th>
+        <th scope="col">when-which</th>
+        <th scope="col">Description</th>
         <th scope="col">Image</th>
         <th scope="col">Handle</th>
       </tr>
@@ -18,16 +17,22 @@
       <% @foods.each do |food| %>
         <tr>
           <th scope="row"><%= food.id %></th>
-          <td><%= food.description %></td>
           <td><%= food.user_id %></td>
+          <td><%= food.when %>日<%= whichfood(food.which) %></td>
+          <td><%= safe_join(food.description.split("\n"),tag(:br)) %></td>
           <td><% if food.image? %>
-              <%= image_tag food.image.url %>
+              <%= image_tag food.image.url , style:"max-width:10rem" %>
               <% else %>
-              <%= image_tag "https://via.placeholder.com/150" %>
+              <%= image_tag "noimage.png" %>
               <% end %>
           </td>
-          <td><%= link_to 'Edit', edit_food_path(food) %>
-          <%= link_to 'Delete', food_path(food), method: :delete, data: { confirm: "Are you sure?" }%>
+          
+          <td>
+          <%= link_to "このユーザーの食事記録を見る", user_path(food.user) ,class:"btn btn-outline-success"%><br>
+          <% if current_user.admin? %> 
+            <%= link_to 'Edit', edit_food_path(food) %><br>
+            <%= link_to 'Delete', food_path(food), method: :delete, data: { confirm: "Are you sure?" }%>
+          <% end %>
           </td>
         </tr>
         <% # image_tag food.image.url if food.image? %>
