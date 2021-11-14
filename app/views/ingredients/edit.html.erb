@@ -1,0 +1,13 @@
+<div class="container">
+  <h2>Editing a ingredient profile</h2>
+  <h2>this is id <%= @ingredient.id %></h2>
+  <%= form_for(@ingredient, url:{controller:'ingredients', action:'update'}) do |f| %>
+    <div class="form-group pt-3">
+      <%= f.label :cal %>
+      <%= f.text_field :cal,{class:"form-control", placeholder:"xx cal"} %>
+    <%= f.submit "アップデート" ,class:"btn btn-primary" %>
+    </div>
+  <% end %>
+  
+  
+</div>

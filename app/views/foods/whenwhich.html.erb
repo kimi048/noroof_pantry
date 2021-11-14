@@ -9,11 +9,15 @@
     <div class="form-group">
     <label for="user_id">食事内容</label>
       
-        <%= f.text_area :description, class: "form-control shadow rounded", placeholder: "Enter a username" %>
+        <%= f.text_area :description, class: "form-control shadow rounded", placeholder: "食事記録を入力してください" %>
     </div>
     
       <%= f.label :image, 'image' %>
       <%= f.file_field :image %>
+      <%= f.fields_for :ingredient do |i| %>
+         <%= i.hidden_field :cal, value:250 %>
+        
+      <% end %>
       <%= f.submit "新規投稿" , class:"btn btn-primary" %>
     <% end %>
   </div>

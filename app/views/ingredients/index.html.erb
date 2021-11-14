@@ -3,11 +3,23 @@
 
 <canvas id="myChart" style="position: relative; height:50; width:50"></canvas>
 <script>
-var ctx = document.getElementById("myChart");
+function drawBackground(target) {
+  // 範囲を設定
+  var xscale = target.scales["x-axis-0"];
+  var yscale = target.scales["y-axis-0"];
+  var left = xscale.getPixelForValue(55);  // 塗りつぶしを開始するラベル位置
+  var right = xscale.getPixelForValue(65); // 塗りつぶしを終了するラベル位置
+  var top = yscale.top;                      // 塗りつぶしの基点（上端）
+  
+  // 塗りつぶす長方形の設定
+  ctx.fillStyle = "rgba(0,255,0,0.3)";
+  ctx.fillRect(left, top, right - left, yscale.height);
+}
+var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'horizontalBar',
   data: {
-    labels: ["Japanese", "Mathematics", "English", "Social studies", "Science","hoge","hoge","hoge","hoge"],
+    labels: ["<%= @hogehoge %>", "Mathematics", "English", "Social studies", "Science","hoge","hoge","hoge","hoge"],
     datasets: [{
       label: '記録',
       backgroundColor: "rgba(0,0,80,0.4)",
@@ -19,7 +31,10 @@ var myChart = new Chart(ctx, {
       borderColor: "rgba(0,255,0,1)",
       data: [50, 50, 50, 50, 50, 50, 50, 50, 50]
     }]
-  }
+  },
+  plugins: [{
+      beforeDraw: drawBackground // ★
+  }],
 });
 </script>
   <div class="container">

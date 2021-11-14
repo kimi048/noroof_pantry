@@ -25,13 +25,17 @@
               <% else %>
               <%= image_tag "noimage.png" %>
               <% end %>
+              <%= food.ingredient.id if food.ingredient %>
           </td>
           
           <td>
           <%= link_to "このユーザーの食事記録を見る", user_path(food.user) ,class:"btn btn-outline-success"%><br>
           <% if current_user.admin? %> 
             <%= link_to 'Edit', edit_food_path(food) %><br>
-            <%= link_to 'Delete', food_path(food), method: :delete, data: { confirm: "Are you sure?" }%>
+            <%= link_to 'Delete', food_path(food), method: :delete, data: { confirm: "Are you sure?" }%><br>
+            <% if food.ingredient %>
+              <%= link_to 'Ingredient' , "/ingredients/"+food.ingredient.id.to_s+"/edit" %>
+            <% end %>
           <% end %>
           </td>
         </tr>

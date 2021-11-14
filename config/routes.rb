@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'ingredients/index'
-  get 'ingredients/show'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'sessions#new'
   get "about", to: "pages#about"
@@ -12,7 +11,11 @@ Rails.application.routes.draw do
   post "foods/:when/:which", to:"foods#wwcreate"
   get "users/all/:date", to:"users#allusersfoods"
   resources :users
-  
+  #ingredients
+  get 'ingredients/index'
+  get 'ingredients/show'
+  get 'ingredients/:id/edit', to:"ingredients#edit"
+  patch 'ingredients/:id', to:"ingredients#update"
   #post "users/new", to: 'users#create'
   get 'signup', to: 'users#new'
   get 'login', to:'sessions#new'
