@@ -27,7 +27,7 @@
 !/storage/.keep
 
 /public/assets
-/public/food/image
+/public/uploads/food/image
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
