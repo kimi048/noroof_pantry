@@ -8,6 +8,7 @@ class FoodsController < ApplicationController
     @when = params[:when].to_i
   end
   def wwindex
+    @user=User.find(current_user.id)
   end
   def wwcreate
     @which = params[:which]

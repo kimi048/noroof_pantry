@@ -1,0 +1,53 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <th scope="row"><%= @user.id %></th>
+          <td><%= @user.id %></td>
+          <td><%= @user.email %></td>
+          <td><%= @user.username %></td>
+        </tr>
+        
+      
+    </tbody>
+  </table>
+  
+  
+  <% count = 0 %>
+  <% date = 17 %>
+  <% for food in @foods %>
+    <% if count%3 == 0 %>
+      <% date=date+1 %>
+      <h2><%= date %>日<%= novdate(date) %></h2>
+    <% end %>
+    <% if food %>
+    
+    <div class="card" style="width: 15rem;">
+      <% if food.image? %>
+        <%= image_tag food.image.url , width:"100%" , class:"card-img-top" %>
+        <% else %>
+        <%= image_tag "noimage.png", width:"100%" %>
+      <% end %>
+      
+      <div class="card-body">
+        <p class="card-text"><strong><%= date %>日
+        <%= whichfood(food.which) %>
+        </strong>
+        <br>
+        <%= safe_join(food.description.split("\n"),tag(:br)) %></p>
+      </div>
+    </div> 
+    <br>
+    <% end %>
+    <% count = count + 1 %>
+  <% end %>
+</div>
