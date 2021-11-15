@@ -21,6 +21,6 @@ class IngredientsController < ApplicationController
   end
   private 
   def ingredient_params
-    params.require(:ingredient).permit(:cal, :food_id)
+    params.require(:ingredient).permit(:cal, :protein, :lipid, :carbon, :ca, :fe, :v_a, :v_e, :v_b1, :v_b2, :v_c, :fiber, :fatty, :saltval)
   end
 end

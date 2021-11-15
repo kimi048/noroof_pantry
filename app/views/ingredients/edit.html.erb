@@ -3,10 +3,64 @@
   <h2>this is id <%= @ingredient.id %></h2>
   <%= form_for(@ingredient, url:{controller:'ingredients', action:'update'}) do |f| %>
     <div class="form-group pt-3">
-      <%= f.label :cal %>
-      <%= f.text_field :cal,{class:"form-control", placeholder:"xx cal"} %>
-    <%= f.submit "アップデート" ,class:"btn btn-primary" %>
+      <%= f.label :cal,"カロリー" %>
+      <%= f.text_field :cal, {class:"form-control", placeholder:"xx cal"} %>
     </div>
+    <div class="form-group pt-3">
+      <%= f.label :protein ,"たんぱく質"%>
+      <%= f.text_field :protein, {class:"form-control", placeholder:"xx cal"} %>
+    </div>
+    <div class="form-group pt-3">
+      <%= f.label :lipid ,"脂質"%>
+      <%= f.text_field :lipid, {class:"form-control", placeholder:"xx cal"} %>
+    </div>
+    <div class="form-group pt-3">
+      <%= f.label :carbon ,"炭水化物"%>
+      <%= f.text_field :carbon, {class:"form-control", placeholder:"xx cal"} %>
+    </div>
+    <div class="form-group pt-3">
+      <%= f.label :ca,"カルシウム" %>
+      <%= f.text_field :ca, {class:"form-control", placeholder:"xx cal"} %>
+    </div>
+    <div class="form-group pt-3">
+      <%= f.label :fe,"鉄" %>
+      <%= f.text_field :fe,{class:"form-control", placeholder:"xx cal"} %>
+    </div>
+    <div class="form-group pt-3">
+      <%= f.label :v_a ,"ビタミンA"%>
+      <%= f.text_field :v_a, {class:"form-control", placeholder:"xx cal"} %>
+    </div>
+    <div class="form-group pt-3">
+      <%= f.label :v_e ,"ビタミンE"%>
+      <%= f.text_field :v_e, {class:"form-control", placeholder:"xx cal"} %>
+    </div>
+    <div class="form-group pt-3">
+      <%= f.label :v_b1,"ビタミンB1" %>
+      <%= f.text_field :v_b1, {class:"form-control", placeholder:"xx cal"} %>
+    </div>
+    <div class="form-group pt-3">
+      <%= f.label :v_b2,"ビタミンB2" %>
+      <%= f.text_field :v_b2, {class:"form-control", placeholder:"xx cal"} %>
+    </div>
+    <div class="form-group pt-3">
+      <%= f.label :v_c ,"ビタミンC"%>
+      <%= f.text_field :v_c, {class:"form-control", placeholder:"xx cal"} %>
+    </div>
+    <div class="form-group pt-3">
+      <%= f.label :fiber,"食物繊維" %>
+      <%= f.text_field :fiber, {class:"form-control", placeholder:"xx cal"} %>
+    </div>
+    <div class="form-group pt-3">
+      <%= f.label :fatty ,"飽和脂肪酸"%>
+      <%= f.text_field :fatty, {class:"form-control", placeholder:"xx cal"} %>
+    </div>
+    <div class="form-group pt-3">
+      <%= f.label :saltval ,"塩分"%>
+      <%= f.text_field :saltval, {class:"form-control", placeholder:"xx cal"} %>
+    </div>
+    
+    <%= f.submit "アップデート" ,class:"btn btn-primary mb-5" %>
+    
   <% end %>
   
   

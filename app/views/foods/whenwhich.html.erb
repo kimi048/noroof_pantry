@@ -15,7 +15,20 @@
       <%= f.label :image, 'image' %>
       <%= f.file_field :image %>
       <%= f.fields_for :ingredient do |i| %>
-         <%= i.hidden_field :cal, value:250 %>
+         <%= i.hidden_field :cal, value:0 %>
+         <%= i.hidden_field :protein, value:0 %>
+         <%= i.hidden_field :lipid, value:0 %>
+         <%= i.hidden_field :carbon, value:0 %>
+         <%= i.hidden_field :ca, value:0 %>
+         <%= i.hidden_field :fe, value:0 %>
+         <%= i.hidden_field :v_a, value:0 %>
+         <%= i.hidden_field :v_e, value:0 %>
+         <%= i.hidden_field :v_b1, value:0 %>
+         <%= i.hidden_field :v_b2, value:0 %>
+         <%= i.hidden_field :v_c, value:0 %>
+         <%= i.hidden_field :fiber, value:0 %>
+         <%= i.hidden_field :fatty, value:0 %>
+         <%= i.hidden_field :saltval, value:0 %>
         
       <% end %>
       <%= f.submit "新規投稿" , class:"btn btn-primary" %>

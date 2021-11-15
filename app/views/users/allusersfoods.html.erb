@@ -24,21 +24,22 @@
       <% end %>
     </div>
       <% if (breakfast && breakfast.ingredient)&& (lunch && lunch.ingredient) && (dinner && dinner.ingredient)%>
-      <p>ここに栄養情報を入れる</p>
-      <canvas id="myChart70<%=user.id%>" style="position: relative; height:50; width:50"></canvas>
-      <canvas id="myChart20<%=user.id%>" style="position: relative; height:50; width:50"></canvas>
-      <canvas id="myChart30<%=user.id%>" style="position: relative; height:50; width:50"></canvas>
-      <canvas id="myChart40<%=user.id%>" style="position: relative; height:50; width:50"></canvas>
-      <canvas id="myChart50<%=user.id%>" style="position: relative; height:50; width:50"></canvas>
-      <canvas id="myChart60<%=user.id%>" style="position: relative; height:50; width:50"></canvas>
+      
+      <canvas id="myChart70<%=user.id%>" style="position: relative; height:50; width:50;"></canvas>
+      <canvas id="myChart20<%=user.id%>" style="position: relative; height:50; width:50;"></canvas>
+      <canvas id="myChart30<%=user.id%>" style="position: relative; height:50; width:50;"></canvas>
+      <canvas id="myChart40<%=user.id%>" style="position: relative; height:50; width:50;"></canvas>
+      <canvas id="myChart50<%=user.id%>" style="position: relative; height:50; width:50;"></canvas>
+      <canvas id="myChart60<%=user.id%>" style="position: relative; height:50; width:50;"></canvas>
+      <canvas id="myChart80<%=user.id%>" style="position: relative; height:50; width:50;"></canvas>
         <script>
         //1
         function drawBackground7(target) {
           // 範囲を設定
           var xscale = target.scales["x-axis-0"];
           var yscale = target.scales["y-axis-0"];
-          var left = xscale.getPixelForValue(35);  // 塗りつぶしを開始するラベル位置
-          var right = xscale.getPixelForValue(85); // 塗りつぶしを終了するラベル位置
+          var left = xscale.getPixelForValue(1900);  // 塗りつぶしを開始するラベル位置
+          var right = xscale.getPixelForValue(2400); // 塗りつぶしを終了するラベル位置
           var top = yscale.top;                      // 塗りつぶしの基点（上端）
           
           // 塗りつぶす長方形の設定
@@ -53,7 +54,7 @@
               xAxes: [{
                 ticks: {
                   beginAtZero: true,
-                  max:2000
+                  max:2600
                 }
               }]
             },
@@ -63,7 +64,7 @@
             }
           },
           data: {
-            labels: ["カロリー[<%= breakfast.ingredient.cal+lunch.ingredient.cal+dinner.ingredient.cal%>/2000]" 
+            labels: ["カロリー[<%= breakfast.ingredient.cal+lunch.ingredient.cal+dinner.ingredient.cal%>/1900-2400kcal]" 
                       ],
             datasets: [{
               label: '摂取量',
@@ -76,13 +77,13 @@
               beforeDraw: drawBackground7 // ★
           }],
         });
-        //2
+        //2-------------------------------------
         function drawBackground2(target) {
           // 範囲を設定
           var xscale = target.scales["x-axis-0"];
           var yscale = target.scales["y-axis-0"];
-          var left = xscale.getPixelForValue(35);  // 塗りつぶしを開始するラベル位置
-          var right = xscale.getPixelForValue(85); // 塗りつぶしを終了するラベル位置
+          var left = xscale.getPixelForValue(75);  // 塗りつぶしを開始するラベル位置
+          var right = xscale.getPixelForValue(120); // 塗りつぶしを終了するラベル位置
           var top = yscale.top;                      // 塗りつぶしの基点（上端）
           
           // 塗りつぶす長方形の設定
@@ -96,19 +97,24 @@
             scales: {
               xAxes: [{
                 ticks: {
-                  beginAtZero: true
+                  beginAtZero: true,
+                  max:150
                 }
               }]
+            },
+            title:{
+              display:true,
+              text: "たんぱく質(g)"
             }
           },
           data: {
-            labels: ["<%= breakfast.ingredient.cal if breakfast %>", 
+            labels: ["たんぱく質[<%= breakfast.ingredient.protein+lunch.ingredient.protein+dinner.ingredient.protein%>/75g~120g]", 
                       ],
             datasets: [{
               label: '摂取量',
               backgroundColor: "rgba(0,0,80,0.4)",
               borderColor: "rgba(0,0,80,1)",
-              data: [80 ]
+              data: [<%= breakfast.ingredient.protein+lunch.ingredient.protein+dinner.ingredient.protein%> ]
             }]
           },
           plugins: [{
@@ -116,13 +122,13 @@
           }],
         });
 
-        //3
+        //3-------------------------------------
         function drawBackground3(target) {
           // 範囲を設定
           var xscale = target.scales["x-axis-0"];
           var yscale = target.scales["y-axis-0"];
-          var left = xscale.getPixelForValue(55);  // 塗りつぶしを開始するラベル位置
-          var right = xscale.getPixelForValue(65); // 塗りつぶしを終了するラベル位置
+          var left = xscale.getPixelForValue(52);  // 塗りつぶしを開始するラベル位置
+          var right = xscale.getPixelForValue(81); // 塗りつぶしを終了するラベル位置
           var top = yscale.top;                      // 塗りつぶしの基点（上端）
           
           // 塗りつぶす長方形の設定
@@ -136,26 +142,23 @@
             scales: {
               xAxes: [{
                 ticks: {
-                  beginAtZero: true
+                  beginAtZero: true,
+                  max:100
                 }
               }]
+            },
+            title:{
+              display:true,
+              text: "脂質(g)"
             }
           },
           data: {
-            labels: ["<%= breakfast.ingredient.cal if breakfast %>", 
-                      "Mathematics", 
-                      "English", 
-                      "Social studies", 
-                      "Science",
-                      "hoge",
-                      "hoge",
-                      "hoge",
-                      "hoge"],
+            labels: ["脂質[<%= breakfast.ingredient.lipid+lunch.ingredient.lipid+dinner.ingredient.lipid%>/52~81g]"],
             datasets: [{
               label: '摂取量',
               backgroundColor: "rgba(0,0,80,0.4)",
               borderColor: "rgba(0,0,80,1)",
-              data: [80, 90, 60, 70, 100, 20, ]
+              data: [<%= breakfast.ingredient.lipid+lunch.ingredient.lipid+dinner.ingredient.lipid%> ]
             }]
           },
           plugins: [{
@@ -163,13 +166,13 @@
           }],
         });
 
-        //4
+        //4-------------------------------------
         function drawBackground4(target) {
           // 範囲を設定
           var xscale = target.scales["x-axis-0"];
           var yscale = target.scales["y-axis-0"];
-          var left = xscale.getPixelForValue(55);  // 塗りつぶしを開始するラベル位置
-          var right = xscale.getPixelForValue(65); // 塗りつぶしを終了するラベル位置
+          var left = xscale.getPixelForValue(290);  // 塗りつぶしを開始するラベル位置
+          var right = xscale.getPixelForValue(395); // 塗りつぶしを終了するラベル位置
           var top = yscale.top;                      // 塗りつぶしの基点（上端）
           
           // 塗りつぶす長方形の設定
@@ -183,39 +186,36 @@
             scales: {
               xAxes: [{
                 ticks: {
-                  beginAtZero: true
+                  beginAtZero: true,
+                  max:450
                 }
               }]
+            },
+            title:{
+              display:true,
+              text: "炭水化物(g)"
             }
           },
           data: {
-            labels: ["<%= breakfast.ingredient.cal if breakfast %>", 
-                      "Mathematics", 
-                      "English", 
-                      "Social studies", 
-                      "Science",
-                      "hoge",
-                      "hoge",
-                      "hoge",
-                      "hoge"],
+            labels: ["炭水化物(g)[<%= breakfast.ingredient.carbon+lunch.ingredient.carbon+dinner.ingredient.carbon%>/290~395g]"],
             datasets: [{
               label: '摂取量',
               backgroundColor: "rgba(0,0,80,0.4)",
               borderColor: "rgba(0,0,80,1)",
-              data: [80, 90, 60, 70, 100, 20, ]
+              data: [<%= breakfast.ingredient.carbon+lunch.ingredient.carbon+dinner.ingredient.carbon%> ]
             }]
           },
           plugins: [{
               beforeDraw: drawBackground4 // ★
           }],
         });
-        //5
+        //5-------------------------------------
         function drawBackground5(target) {
           // 範囲を設定
           var xscale = target.scales["x-axis-0"];
           var yscale = target.scales["y-axis-0"];
-          var left = xscale.getPixelForValue(55);  // 塗りつぶしを開始するラベル位置
-          var right = xscale.getPixelForValue(65); // 塗りつぶしを終了するラベル位置
+          var left = xscale.getPixelForValue(100);  // 塗りつぶしを開始するラベル位置
+          var right = xscale.getPixelForValue(150); // 塗りつぶしを終了するラベル位置
           var top = yscale.top;                      // 塗りつぶしの基点（上端）
           
           // 塗りつぶす長方形の設定
@@ -229,72 +229,87 @@
             scales: {
               xAxes: [{
                 ticks: {
-                  beginAtZero: true
+                  beginAtZero: true,
+                  max:150
                 }
               }]
+            },
+            title:{
+              display:true,
+              text: "栄養素ごとのグラフ"
             }
           },
           data: {
-            labels: ["<%= breakfast.ingredient.cal if breakfast %>", 
-                      "Mathematics", 
-                      "English", 
-                      "Social studies", 
-                      "Science",
-                      "hoge",
-                      "hoge",
-                      "hoge",
-                      "hoge"],
+            labels: ["カルシウム[<%= breakfast.ingredient.ca+lunch.ingredient.ca+dinner.ingredient.ca %>/800-2500mg]", 
+                      "鉄[<%= breakfast.ingredient.fe+lunch.ingredient.fe+dinner.ingredient.fe %>/7.5~50mg]", 
+                      "ビタミンA[<%= breakfast.ingredient.v_a+lunch.ingredient.v_a+dinner.ingredient.v_a %>/850~2700μg]", 
+                      "ビタミンE[<%= breakfast.ingredient.v_e+lunch.ingredient.v_e+dinner.ingredient.v_e %>/6~850mg]", 
+                      "ビタミンB1[<%= breakfast.ingredient.v_b1+lunch.ingredient.v_b1+dinner.ingredient.v_b1 %>/1.4mg以上]",
+                      "ビタミンB2[<%= breakfast.ingredient.v_b2+lunch.ingredient.v_b2+dinner.ingredient.v_b2 %>/1.6mg以上]",
+                      "ビタミンC[<%= breakfast.ingredient.v_c+lunch.ingredient.v_c+dinner.ingredient.v_c %>/100mg以上]",
+                      "食物繊維[<%= breakfast.ingredient.fiber+lunch.ingredient.fiber+dinner.ingredient.fiber %>/21g以上]"
+                    ],
             datasets: [{
               label: '摂取量',
               backgroundColor: "rgba(0,0,80,0.4)",
               borderColor: "rgba(0,0,80,1)",
-              data: [80, 90, 60, 70, 100, 20, ]
+              data: [
+                <%= (breakfast.ingredient.ca+lunch.ingredient.ca+dinner.ingredient.ca)*100/800 %>, 
+                <%= (breakfast.ingredient.fe+lunch.ingredient.fe+dinner.ingredient.fe)*100/7.5 %>, 
+                <%= (breakfast.ingredient.v_a+lunch.ingredient.v_a+dinner.ingredient.v_a)*100/850 %>, 
+                <%= (breakfast.ingredient.v_e+lunch.ingredient.v_e+dinner.ingredient.v_e)*100/6 %>, 
+                <%= (breakfast.ingredient.v_b1+lunch.ingredient.v_b1+dinner.ingredient.v_b1)*100/1.4 %>, 
+                <%= (breakfast.ingredient.v_b2+lunch.ingredient.v_b2+dinner.ingredient.v_b2)*100/1.6 %>,
+                <%= (breakfast.ingredient.v_c+lunch.ingredient.v_c+dinner.ingredient.v_c)*100/100 %>,
+                <%= (breakfast.ingredient.fiber+lunch.ingredient.fiber+dinner.ingredient.fiber)*100/21 %>
+               ]
             }]
           },
           plugins: [{
               beforeDraw: drawBackground5 // ★
           }],
         });
-        //6
+        //6-------------------------------------
         function drawBackground6(target) {
           // 範囲を設定
           var xscale = target.scales["x-axis-0"];
           var yscale = target.scales["y-axis-0"];
-          var left = xscale.getPixelForValue(55);  // 塗りつぶしを開始するラベル位置
-          var right = xscale.getPixelForValue(65); // 塗りつぶしを終了するラベル位置
+          var left = xscale.getPixelForValue(0);  // 塗りつぶしを開始するラベル位置
+          var right = xscale.getPixelForValue(100); // 塗りつぶしを終了するラベル位置
           var top = yscale.top;                      // 塗りつぶしの基点（上端）
           
           // 塗りつぶす長方形の設定
           ctx60<%=user.id%>.fillStyle = "rgba(0,255,0,0.3)";
           ctx60<%=user.id%>.fillRect(left, top, right - left, yscale.height);
         }
-        var ctx60<%=user.id%> = document.getElementById("myChart10<%=user.id%>").getContext('2d');
+        var ctx60<%=user.id%> = document.getElementById("myChart60<%=user.id%>").getContext('2d');
         var myChart60<%=user.id%> = new Chart(ctx60<%=user.id%>, {
           type: 'horizontalBar',
           options: {
             scales: {
               xAxes: [{
                 ticks: {
-                  beginAtZero: true
+                  beginAtZero: true,
+                  max:150
                 }
               }]
+            },
+            title:{
+              display:true,
+              text: "飽和脂肪酸/塩分"
             }
           },
           data: {
-            labels: ["<%= breakfast.ingredient.cal if breakfast %>", 
-                      "Mathematics", 
-                      "English", 
-                      "Social studies", 
-                      "Science",
-                      "hoge",
-                      "hoge",
-                      "hoge",
-                      "hoge"],
+            labels: ["飽和脂肪酸[<%= breakfast.ingredient.fatty+lunch.ingredient.fatty+dinner.ingredient.fatty %>/18.5g未満]", 
+                      "塩分[<%= breakfast.ingredient.saltval+lunch.ingredient.saltval+dinner.ingredient.saltval %>/7.5g未満]"],
             datasets: [{
               label: '摂取量',
               backgroundColor: "rgba(0,0,80,0.4)",
               borderColor: "rgba(0,0,80,1)",
-              data: [80, 90, 60, 70, 100, 20, ]
+              data: [
+                <%= (breakfast.ingredient.fatty+lunch.ingredient.fatty+dinner.ingredient.fatty)*100/18.5 %>, 
+                <%= (breakfast.ingredient.saltval+lunch.ingredient.saltval+dinner.ingredient.saltval)*100/7.5 %>
+              ]
             }]
           },
           plugins: [{

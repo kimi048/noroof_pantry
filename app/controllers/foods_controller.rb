@@ -33,7 +33,7 @@ class FoodsController < ApplicationController
   def create
     @which = params[:which]
     @when = params[:when].to_i
-    @food = Food.save(food_params)
+    @food = Food.new(food_params)
     @food.user_id = current_user.id
     @food.save
     redirect_to user_path(current_user.id)
@@ -52,7 +52,7 @@ class FoodsController < ApplicationController
   end
   private
   def food_params
-    params.require(:food).permit(:description, :user_id, :image, :when, :which, ingredient_attributes: [:id, :cal, :food_id])
+    params.require(:food).permit(:description, :user_id, :image, :when, :which, ingredient_attributes: [:id, :cal, :food_id, :protein, :lipid, :carbon, :ca, :fe, :v_a, :v_e, :v_b1, :v_b2, :v_c, :fiber, :fatty, :saltval])
   end
 end
   

@@ -40,14 +40,7 @@
       
       <div class="card-body">
         <p class="card-text"><strong><%= date %>日
-        <% case food.which %>
-          <% when "breakfast" then %>
-          朝食
-          <% when "lunch" then %>
-          昼食
-          <% when "dinner" then %>
-          夕食
-        <% end %>
+        <%= whichfood(food.which) %>
         </strong>
         <br>
         <%= safe_join(food.description.split("\n"),tag(:br)) %></p>
