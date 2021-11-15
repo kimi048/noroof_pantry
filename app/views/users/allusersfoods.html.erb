@@ -2,43 +2,307 @@
 <div class="container">
   <h2><%= @date %>日</h2>
   <% @users.each do|user|%>
+    <% breakfast = user.foods.where(when: @date).where(which:"breakfast").last %>
+    <% lunch = user.foods.where(when: @date).where(which:"lunch").last%>
+    <% dinner = user.foods.where(when: @date).where(which:"dinner").last %>
+    <% foods =Array[breakfast,lunch,dinner] %>
+    User-ID:<%= user.id %> <br>
     <div class="row">
-      <div class="col-md-4 col-12">
-      User-ID:<%= user.id %>
-        <%if user.foods.where(when: @date).where(which:"breakfast").last %>
-          <br><strong>朝食</strong><br>
-          <% if user.foods.where(when: @date).where(which:"breakfast").last.image? %>
-            <%= image_tag user.foods.where(when: @date).where(which:"breakfast").last.image.url, width:"100%" %>  
-            <% else %>
-            <%= image_tag "noimage.png" , width:"100%"%>
-          <% end%>
-        <% end %>
-        <%= safe_join(user.foods.where(when: @date).where(which:"breakfast").last.description.split("\n"),tag(:br)) if user.foods.where(when: @date).where(which:"breakfast").last%>
-      </div>
-      <div class="col-md-4 col-12">
-        <% if user.foods.where(when: @date).where(which:"lunch").last %>
-          <br><strong>昼食</strong><br>
-          <% if user.foods.where(when: @date).where(which:"lunch").last.image? %>
-            <%= image_tag user.foods.where(when: @date).where(which:"lunch").last.image.url, width:"100%" %> 
-            <% else %>
-            <%= image_tag "noimage.png" , width:"100%"%>
-          <% end%>
-        <% end %>
-        <%= safe_join(user.foods.where(when: @date).where(which:"lunch").last.description.split("\n"),tag(:br)) if user.foods.where(when: @date).where(which:"lunch").last%>
-      </div>
-      <div class="col-md-4 col-12">
-        <% if user.foods.where(when: @date).where(which:"dinner").last %>
-          <br><strong>夕食</strong><br>
-          <% if user.foods.where(when: @date).where(which:"dinner").last.image? %>
-            <%= image_tag user.foods.where(when: @date).where(which:"dinner").last.image.url, width:"100%" %> 
-            <% else %>
-            <%= image_tag "noimage.png", width:"100%" %>
-          <% end%>
-        <% end %>
-        <%= safe_join(user.foods.where(when: @date).where(which:"dinner").last.description.split("\n"),tag(:br)) if user.foods.where(when: @date).where(which:"dinner").last%>
-      </div>
+      
+      <% for food in foods do%>
+        <div class="col-md-4 col-12">
+          <%if food %>
+            <br><strong><%= whichfood(food.which) %></strong><br>
+            <% if food.image? %>
+              <%= image_tag food.image.url, width:"100%" %>  
+              <% else %>
+              <%= image_tag "noimage.png" , width:"100%"%>
+            <% end%>
+          <% end %>
+          <%= safe_join(food.description.split("\n"),tag(:br)) if food %>
+        </div>
+      <% end %>
     </div>
+      <% if (breakfast && breakfast.ingredient)&& (lunch && lunch.ingredient) && (dinner && dinner.ingredient)%>
       <p>ここに栄養情報を入れる</p>
-    <hr>
+      <canvas id="myChart70<%=user.id%>" style="position: relative; height:50; width:50"></canvas>
+      <canvas id="myChart20<%=user.id%>" style="position: relative; height:50; width:50"></canvas>
+      <canvas id="myChart30<%=user.id%>" style="position: relative; height:50; width:50"></canvas>
+      <canvas id="myChart40<%=user.id%>" style="position: relative; height:50; width:50"></canvas>
+      <canvas id="myChart50<%=user.id%>" style="position: relative; height:50; width:50"></canvas>
+      <canvas id="myChart60<%=user.id%>" style="position: relative; height:50; width:50"></canvas>
+        <script>
+        //1
+        function drawBackground7(target) {
+          // 範囲を設定
+          var xscale = target.scales["x-axis-0"];
+          var yscale = target.scales["y-axis-0"];
+          var left = xscale.getPixelForValue(35);  // 塗りつぶしを開始するラベル位置
+          var right = xscale.getPixelForValue(85); // 塗りつぶしを終了するラベル位置
+          var top = yscale.top;                      // 塗りつぶしの基点（上端）
+          
+          // 塗りつぶす長方形の設定
+          ctx70<%=user.id%>.fillStyle = "rgba(0,255,0,0.3)";
+          ctx70<%=user.id%>.fillRect(left, top, right - left, yscale.height);
+        }
+        var ctx70<%=user.id%> = document.getElementById("myChart70<%=user.id%>").getContext('2d');
+        var myChart70<%=user.id%> = new Chart(ctx70<%=user.id%>, {
+          type: 'horizontalBar',
+          options: {
+            scales: {
+              xAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  max:2000
+                }
+              }]
+            },
+            title:{
+              display:true,
+              text: "エネルギー（カロリー）"
+            }
+          },
+          data: {
+            labels: ["カロリー[<%= breakfast.ingredient.cal+lunch.ingredient.cal+dinner.ingredient.cal%>/2000]" 
+                      ],
+            datasets: [{
+              label: '摂取量',
+              backgroundColor: "rgba(0,0,80,0.4)",
+              borderColor: "rgba(0,0,80,1)",
+              data: [<%= breakfast.ingredient.cal+lunch.ingredient.cal+dinner.ingredient.cal%> ]
+            }]
+          },
+          plugins: [{
+              beforeDraw: drawBackground7 // ★
+          }],
+        });
+        //2
+        function drawBackground2(target) {
+          // 範囲を設定
+          var xscale = target.scales["x-axis-0"];
+          var yscale = target.scales["y-axis-0"];
+          var left = xscale.getPixelForValue(35);  // 塗りつぶしを開始するラベル位置
+          var right = xscale.getPixelForValue(85); // 塗りつぶしを終了するラベル位置
+          var top = yscale.top;                      // 塗りつぶしの基点（上端）
+          
+          // 塗りつぶす長方形の設定
+          ctx20<%=user.id%>.fillStyle = "rgba(0,255,0,0.3)";
+          ctx20<%=user.id%>.fillRect(left, top, right - left, yscale.height);
+        }
+        var ctx20<%=user.id%> = document.getElementById("myChart20<%=user.id%>").getContext('2d');
+        var myChart20<%=user.id%> = new Chart(ctx20<%=user.id%>, {
+          type: 'horizontalBar',
+          options: {
+            scales: {
+              xAxes: [{
+                ticks: {
+                  beginAtZero: true
+                }
+              }]
+            }
+          },
+          data: {
+            labels: ["<%= breakfast.ingredient.cal if breakfast %>", 
+                      ],
+            datasets: [{
+              label: '摂取量',
+              backgroundColor: "rgba(0,0,80,0.4)",
+              borderColor: "rgba(0,0,80,1)",
+              data: [80 ]
+            }]
+          },
+          plugins: [{
+              beforeDraw: drawBackground2 // ★
+          }],
+        });
+
+        //3
+        function drawBackground3(target) {
+          // 範囲を設定
+          var xscale = target.scales["x-axis-0"];
+          var yscale = target.scales["y-axis-0"];
+          var left = xscale.getPixelForValue(55);  // 塗りつぶしを開始するラベル位置
+          var right = xscale.getPixelForValue(65); // 塗りつぶしを終了するラベル位置
+          var top = yscale.top;                      // 塗りつぶしの基点（上端）
+          
+          // 塗りつぶす長方形の設定
+          ctx30<%=user.id%>.fillStyle = "rgba(0,255,0,0.3)";
+          ctx30<%=user.id%>.fillRect(left, top, right - left, yscale.height);
+        }
+        var ctx30<%=user.id%> = document.getElementById("myChart30<%=user.id%>").getContext('2d');
+        var myChart30<%=user.id%> = new Chart(ctx30<%=user.id%>, {
+          type: 'horizontalBar',
+          options: {
+            scales: {
+              xAxes: [{
+                ticks: {
+                  beginAtZero: true
+                }
+              }]
+            }
+          },
+          data: {
+            labels: ["<%= breakfast.ingredient.cal if breakfast %>", 
+                      "Mathematics", 
+                      "English", 
+                      "Social studies", 
+                      "Science",
+                      "hoge",
+                      "hoge",
+                      "hoge",
+                      "hoge"],
+            datasets: [{
+              label: '摂取量',
+              backgroundColor: "rgba(0,0,80,0.4)",
+              borderColor: "rgba(0,0,80,1)",
+              data: [80, 90, 60, 70, 100, 20, ]
+            }]
+          },
+          plugins: [{
+              beforeDraw: drawBackground3 // ★
+          }],
+        });
+
+        //4
+        function drawBackground4(target) {
+          // 範囲を設定
+          var xscale = target.scales["x-axis-0"];
+          var yscale = target.scales["y-axis-0"];
+          var left = xscale.getPixelForValue(55);  // 塗りつぶしを開始するラベル位置
+          var right = xscale.getPixelForValue(65); // 塗りつぶしを終了するラベル位置
+          var top = yscale.top;                      // 塗りつぶしの基点（上端）
+          
+          // 塗りつぶす長方形の設定
+          ctx40<%=user.id%>.fillStyle = "rgba(0,255,0,0.3)";
+          ctx40<%=user.id%>.fillRect(left, top, right - left, yscale.height);
+        }
+        var ctx40<%=user.id%> = document.getElementById("myChart40<%=user.id%>").getContext('2d');
+        var myChart40<%=user.id%> = new Chart(ctx40<%=user.id%>, {
+          type: 'horizontalBar',
+          options: {
+            scales: {
+              xAxes: [{
+                ticks: {
+                  beginAtZero: true
+                }
+              }]
+            }
+          },
+          data: {
+            labels: ["<%= breakfast.ingredient.cal if breakfast %>", 
+                      "Mathematics", 
+                      "English", 
+                      "Social studies", 
+                      "Science",
+                      "hoge",
+                      "hoge",
+                      "hoge",
+                      "hoge"],
+            datasets: [{
+              label: '摂取量',
+              backgroundColor: "rgba(0,0,80,0.4)",
+              borderColor: "rgba(0,0,80,1)",
+              data: [80, 90, 60, 70, 100, 20, ]
+            }]
+          },
+          plugins: [{
+              beforeDraw: drawBackground4 // ★
+          }],
+        });
+        //5
+        function drawBackground5(target) {
+          // 範囲を設定
+          var xscale = target.scales["x-axis-0"];
+          var yscale = target.scales["y-axis-0"];
+          var left = xscale.getPixelForValue(55);  // 塗りつぶしを開始するラベル位置
+          var right = xscale.getPixelForValue(65); // 塗りつぶしを終了するラベル位置
+          var top = yscale.top;                      // 塗りつぶしの基点（上端）
+          
+          // 塗りつぶす長方形の設定
+          ctx50<%=user.id%>.fillStyle = "rgba(0,255,0,0.3)";
+          ctx50<%=user.id%>.fillRect(left, top, right - left, yscale.height);
+        }
+        var ctx50<%=user.id%> = document.getElementById("myChart50<%=user.id%>").getContext('2d');
+        var myChart50<%=user.id%> = new Chart(ctx50<%=user.id%>, {
+          type: 'horizontalBar',
+          options: {
+            scales: {
+              xAxes: [{
+                ticks: {
+                  beginAtZero: true
+                }
+              }]
+            }
+          },
+          data: {
+            labels: ["<%= breakfast.ingredient.cal if breakfast %>", 
+                      "Mathematics", 
+                      "English", 
+                      "Social studies", 
+                      "Science",
+                      "hoge",
+                      "hoge",
+                      "hoge",
+                      "hoge"],
+            datasets: [{
+              label: '摂取量',
+              backgroundColor: "rgba(0,0,80,0.4)",
+              borderColor: "rgba(0,0,80,1)",
+              data: [80, 90, 60, 70, 100, 20, ]
+            }]
+          },
+          plugins: [{
+              beforeDraw: drawBackground5 // ★
+          }],
+        });
+        //6
+        function drawBackground6(target) {
+          // 範囲を設定
+          var xscale = target.scales["x-axis-0"];
+          var yscale = target.scales["y-axis-0"];
+          var left = xscale.getPixelForValue(55);  // 塗りつぶしを開始するラベル位置
+          var right = xscale.getPixelForValue(65); // 塗りつぶしを終了するラベル位置
+          var top = yscale.top;                      // 塗りつぶしの基点（上端）
+          
+          // 塗りつぶす長方形の設定
+          ctx60<%=user.id%>.fillStyle = "rgba(0,255,0,0.3)";
+          ctx60<%=user.id%>.fillRect(left, top, right - left, yscale.height);
+        }
+        var ctx60<%=user.id%> = document.getElementById("myChart10<%=user.id%>").getContext('2d');
+        var myChart60<%=user.id%> = new Chart(ctx60<%=user.id%>, {
+          type: 'horizontalBar',
+          options: {
+            scales: {
+              xAxes: [{
+                ticks: {
+                  beginAtZero: true
+                }
+              }]
+            }
+          },
+          data: {
+            labels: ["<%= breakfast.ingredient.cal if breakfast %>", 
+                      "Mathematics", 
+                      "English", 
+                      "Social studies", 
+                      "Science",
+                      "hoge",
+                      "hoge",
+                      "hoge",
+                      "hoge"],
+            datasets: [{
+              label: '摂取量',
+              backgroundColor: "rgba(0,0,80,0.4)",
+              borderColor: "rgba(0,0,80,1)",
+              data: [80, 90, 60, 70, 100, 20, ]
+            }]
+          },
+          plugins: [{
+              beforeDraw: drawBackground6 // ★
+          }],
+        });
+        </script>
+      <% end %>
+      <hr>
   <% end %>
 </div>

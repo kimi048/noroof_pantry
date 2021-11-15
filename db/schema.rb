@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_10_160219) do
+ActiveRecord::Schema.define(version: 2021_11_15_085747) do
 
   create_table "foods", force: :cascade do |t|
     t.text "description"
@@ -27,6 +27,19 @@ ActiveRecord::Schema.define(version: 2021_11_10_160219) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "food_id"
+    t.float "protein", default: 0.0
+    t.float "lipid", default: 0.0
+    t.float "carbon", default: 0.0
+    t.float "ca", default: 0.0
+    t.float "fe", default: 0.0
+    t.float "v_a", default: 0.0
+    t.float "v_e", default: 0.0
+    t.float "v_b1", default: 0.0
+    t.float "v_b2", default: 0.0
+    t.float "v_c", default: 0.0
+    t.float "fiber", default: 0.0
+    t.float "fatty", default: 0.0
+    t.float "saltval", default: 0.0
   end
 
   create_table "users", force: :cascade do |t|
