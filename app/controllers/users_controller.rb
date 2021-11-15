@@ -16,6 +16,15 @@ class UsersController < ApplicationController
       @foods.concat([Food.where(user_id: @user.id).where(when: num).where(which: "dinner").last])
     end
   end
+  def show2
+    @user=User.find(params[:id])
+    @foods=[]
+    (18..23).each do |num|
+      @foods.concat([Food.where(user_id: @user.id).where(when: num).where(which: "breakfast").last])
+      @foods.concat([Food.where(user_id: @user.id).where(when: num).where(which: "lunch").last])
+      @foods.concat([Food.where(user_id: @user.id).where(when: num).where(which: "dinner").last])
+    end
+  end
   def new 
     @user=User.new
   end

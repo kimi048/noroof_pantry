@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "foods/:when/:which", to: "foods#whenwhich"
   post "foods/:when/:which", to:"foods#wwcreate"
   get "users/all/:date", to:"users#allusersfoods"
+  get "users/show2/:id", to:"users#show2"
   resources :users
   #ingredients
   get 'ingredients/index'

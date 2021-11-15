@@ -9,4 +9,22 @@ module ApplicationHelper
         "夕食"
       end
   end
+  def novdate(date)
+    num = date %7
+    if num== 0 then
+      "(日)"
+    elsif num==1 then
+      "(月)"
+    elsif num==2 then
+      "(火)"
+    elsif num==3 then
+      "(水)"
+    elsif num==4 then
+      "(木)"
+    elsif num==5 then
+      "(金)"
+    elsif num==6 then
+      "(土)"
+    end
+  end
 end

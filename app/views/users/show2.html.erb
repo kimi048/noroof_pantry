@@ -1,14 +1,32 @@
-
 <div class="container">
-  <h2><%= @date %>日</h2>
-  <% @users.each do|user|%>
-    <% breakfast = user.foods.where(when: @date).where(which:"breakfast").last %>
-    <% lunch = user.foods.where(when: @date).where(which:"lunch").last%>
-    <% dinner = user.foods.where(when: @date).where(which:"dinner").last %>
-    <% foods =Array[breakfast,lunch,dinner] %>
-    User-ID:<%= user.id %> <br>
-    <div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
       
+        <tr>
+          <th scope="row"><%= @user.id %></th>
+          <td><%= @user.id %></td>
+          <td><%= @user.email %></td>
+          <td><%= @user.username %></td>
+        </tr>
+        
+      
+    </tbody>
+  </table>
+  <% (18..23).each do|date|%>
+    <% breakfast = @user.foods.where(when: date).where(which:"breakfast").last %>
+    <% lunch = @user.foods.where(when: date).where(which:"lunch").last%>
+    <% dinner = @user.foods.where(when: date).where(which:"dinner").last %>
+    <% foods =Array[breakfast,lunch,dinner] %>
+    <h2 class="mb-2"><%= date %>日</h2>
+    <div class="row">
       <% for food in foods do%>
         <div class="col-md-4 col-12">
           <%if food %>
@@ -19,26 +37,27 @@
                 <% else %>
                 <%= image_tag "noimage.png" , width:"100%"%>
             
-              <% end %>
+              <% end %><!--end of if food.image? -->
               <div class="card-body">
                 <div class="card-text">
                   <%= safe_join(food.description.split("\n"),tag(:br)) if food %>
                 </div>
               </div>
             </div>
-          <% end %>
+          <% end %><!--end of if food-->
         </div>
       <% end %>
     </div>
-      <% if (breakfast && breakfast.ingredient)&& (lunch && lunch.ingredient) && (dinner && dinner.ingredient)%>
+    
+    <% if (breakfast && breakfast.ingredient)&& (lunch && lunch.ingredient) && (dinner && dinner.ingredient)%>
       
-      <canvas id="myChart70<%=user.id%>" style="position: relative; height:50; width:50;"></canvas>
-      <canvas id="myChart20<%=user.id%>" style="position: relative; height:50; width:50;"></canvas>
-      <canvas id="myChart30<%=user.id%>" style="position: relative; height:50; width:50;"></canvas>
-      <canvas id="myChart40<%=user.id%>" style="position: relative; height:50; width:50;"></canvas>
-      <canvas id="myChart50<%=user.id%>" style="position: relative; height:50; width:50;"></canvas>
-      <canvas id="myChart60<%=user.id%>" style="position: relative; height:50; width:50;"></canvas>
-      <canvas id="myChart80<%=user.id%>" style="position: relative; height:50; width:50;"></canvas>
+      <canvas id="myChart70<%=breakfast.id%>" style="position: relative; height:50; width:50;"></canvas>
+      <canvas id="myChart20<%=breakfast.id%>" style="position: relative; height:50; width:50;"></canvas>
+      <canvas id="myChart30<%=breakfast.id%>" style="position: relative; height:50; width:50;"></canvas>
+      <canvas id="myChart40<%=breakfast.id%>" style="position: relative; height:50; width:50;"></canvas>
+      <canvas id="myChart50<%=breakfast.id%>" style="position: relative; height:50; width:50;"></canvas>
+      <canvas id="myChart60<%=breakfast.id%>" style="position: relative; height:50; width:50;"></canvas>
+      <canvas id="myChart80<%=breakfast.id%>" style="position: relative; height:50; width:50;"></canvas>
         <script>
         //1
         function drawBackground7(target) {
@@ -50,11 +69,11 @@
           var top = yscale.top;                      // 塗りつぶしの基点（上端）
           
           // 塗りつぶす長方形の設定
-          ctx70<%=user.id%>.fillStyle = "rgba(0,255,0,0.3)";
-          ctx70<%=user.id%>.fillRect(left, top, right - left, yscale.height);
+          ctx70<%=breakfast.id%>.fillStyle = "rgba(0,255,0,0.3)";
+          ctx70<%=breakfast.id%>.fillRect(left, top, right - left, yscale.height);
         }
-        var ctx70<%=user.id%> = document.getElementById("myChart70<%=user.id%>").getContext('2d');
-        var myChart70<%=user.id%> = new Chart(ctx70<%=user.id%>, {
+        var ctx70<%=breakfast.id%> = document.getElementById("myChart70<%=breakfast.id%>").getContext('2d');
+        var myChart70<%=breakfast.id%> = new Chart(ctx70<%=breakfast.id%>, {
           type: 'horizontalBar',
           options: {
             scales: {
@@ -94,11 +113,11 @@
           var top = yscale.top;                      // 塗りつぶしの基点（上端）
           
           // 塗りつぶす長方形の設定
-          ctx20<%=user.id%>.fillStyle = "rgba(0,255,0,0.3)";
-          ctx20<%=user.id%>.fillRect(left, top, right - left, yscale.height);
+          ctx20<%=breakfast.id%>.fillStyle = "rgba(0,255,0,0.3)";
+          ctx20<%=breakfast.id%>.fillRect(left, top, right - left, yscale.height);
         }
-        var ctx20<%=user.id%> = document.getElementById("myChart20<%=user.id%>").getContext('2d');
-        var myChart20<%=user.id%> = new Chart(ctx20<%=user.id%>, {
+        var ctx20<%=breakfast.id%> = document.getElementById("myChart20<%=breakfast.id%>").getContext('2d');
+        var myChart20<%=breakfast.id%> = new Chart(ctx20<%=breakfast.id%>, {
           type: 'horizontalBar',
           options: {
             scales: {
@@ -139,11 +158,11 @@
           var top = yscale.top;                      // 塗りつぶしの基点（上端）
           
           // 塗りつぶす長方形の設定
-          ctx30<%=user.id%>.fillStyle = "rgba(0,255,0,0.3)";
-          ctx30<%=user.id%>.fillRect(left, top, right - left, yscale.height);
+          ctx30<%=breakfast.id%>.fillStyle = "rgba(0,255,0,0.3)";
+          ctx30<%=breakfast.id%>.fillRect(left, top, right - left, yscale.height);
         }
-        var ctx30<%=user.id%> = document.getElementById("myChart30<%=user.id%>").getContext('2d');
-        var myChart30<%=user.id%> = new Chart(ctx30<%=user.id%>, {
+        var ctx30<%=breakfast.id%> = document.getElementById("myChart30<%=breakfast.id%>").getContext('2d');
+        var myChart30<%=breakfast.id%> = new Chart(ctx30<%=breakfast.id%>, {
           type: 'horizontalBar',
           options: {
             scales: {
@@ -183,11 +202,11 @@
           var top = yscale.top;                      // 塗りつぶしの基点（上端）
           
           // 塗りつぶす長方形の設定
-          ctx40<%=user.id%>.fillStyle = "rgba(0,255,0,0.3)";
-          ctx40<%=user.id%>.fillRect(left, top, right - left, yscale.height);
+          ctx40<%=breakfast.id%>.fillStyle = "rgba(0,255,0,0.3)";
+          ctx40<%=breakfast.id%>.fillRect(left, top, right - left, yscale.height);
         }
-        var ctx40<%=user.id%> = document.getElementById("myChart40<%=user.id%>").getContext('2d');
-        var myChart40<%=user.id%> = new Chart(ctx40<%=user.id%>, {
+        var ctx40<%=breakfast.id%> = document.getElementById("myChart40<%=breakfast.id%>").getContext('2d');
+        var myChart40<%=breakfast.id%> = new Chart(ctx40<%=breakfast.id%>, {
           type: 'horizontalBar',
           options: {
             scales: {
@@ -226,11 +245,11 @@
           var top = yscale.top;                      // 塗りつぶしの基点（上端）
           
           // 塗りつぶす長方形の設定
-          ctx50<%=user.id%>.fillStyle = "rgba(0,255,0,0.3)";
-          ctx50<%=user.id%>.fillRect(left, top, right - left, yscale.height);
+          ctx50<%=breakfast.id%>.fillStyle = "rgba(0,255,0,0.3)";
+          ctx50<%=breakfast.id%>.fillRect(left, top, right - left, yscale.height);
         }
-        var ctx50<%=user.id%> = document.getElementById("myChart50<%=user.id%>").getContext('2d');
-        var myChart50<%=user.id%> = new Chart(ctx50<%=user.id%>, {
+        var ctx50<%=breakfast.id%> = document.getElementById("myChart50<%=breakfast.id%>").getContext('2d');
+        var myChart50<%=breakfast.id%> = new Chart(ctx50<%=breakfast.id%>, {
           type: 'horizontalBar',
           options: {
             scales: {
@@ -286,11 +305,11 @@
           var top = yscale.top;                      // 塗りつぶしの基点（上端）
           
           // 塗りつぶす長方形の設定
-          ctx60<%=user.id%>.fillStyle = "rgba(0,255,0,0.3)";
-          ctx60<%=user.id%>.fillRect(left, top, right - left, yscale.height);
+          ctx60<%=breakfast.id%>.fillStyle = "rgba(0,255,0,0.3)";
+          ctx60<%=breakfast.id%>.fillRect(left, top, right - left, yscale.height);
         }
-        var ctx60<%=user.id%> = document.getElementById("myChart60<%=user.id%>").getContext('2d');
-        var myChart60<%=user.id%> = new Chart(ctx60<%=user.id%>, {
+        var ctx60<%=breakfast.id%> = document.getElementById("myChart60<%=breakfast.id%>").getContext('2d');
+        var myChart60<%=breakfast.id%> = new Chart(ctx60<%=breakfast.id%>, {
           type: 'horizontalBar',
           options: {
             scales: {
@@ -325,6 +344,6 @@
         });
         </script>
       <% end %>
-      <hr>
   <% end %>
 </div>
+
