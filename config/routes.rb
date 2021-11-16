@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "about", to: "pages#about"
   get "home", to: "pages#home"
   get "date", to: "pages#date"
+  get "recipi", to:"pages#recipi"
   get "foods/wwindex", to:"foods#wwindex"
   resources :foods, only: [:index, :show, :edit, :update, :new, :create, :destroy]
   get "foods/:when/:which", to: "foods#whenwhich"

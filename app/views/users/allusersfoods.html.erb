@@ -1,14 +1,14 @@
 
 <div class="container">
+  <%= link_to "ホームに戻る", home_path, class:"btn btn-success mb-4 mt-5" %>
   <h2><%= @date %>日</h2>
   <% @users.each do|user|%>
     <% breakfast = user.foods.where(when: @date).where(which:"breakfast").last %>
     <% lunch = user.foods.where(when: @date).where(which:"lunch").last%>
     <% dinner = user.foods.where(when: @date).where(which:"dinner").last %>
     <% foods =Array[breakfast,lunch,dinner] %>
-    User-ID:<%= user.id %> <br>
+    Username:<%= user.username %> / <%=userstatus(user) %> <br>
     <div class="row">
-      
       <% for food in foods do%>
         <div class="col-md-4 col-12">
           <%if food %>

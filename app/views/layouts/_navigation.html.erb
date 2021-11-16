@@ -1,11 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <%= link_to "NoRooF smart", root_path, class: "navbar-brand", id: "logo" %>
+  <%= link_to "NoRooF Pantry", root_path, class: "navbar-brand", id: "logo" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+    <% if logged_in? %>
       <li class="nav-item">
         <%= link_to "Home", home_path, class: "nav-link" %>
       </li>
@@ -25,15 +26,15 @@
           <%= link_to "食事一覧(記録順)", foods_path, class:"dropdown-item" %>
         </div>
       </li>
-      
+    <% end %>
       <% if logged_in? %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= "(Admin)" if current_user.admin? %> Profile [<%= current_user.username %>]さん
+            <%= "(Admin)" if current_user.admin? %> [<%= current_user.username %>]さん
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "View your profile", user_path(current_user), class: "dropdown-item" %>
-            <%= link_to "Edit your profile", edit_user_path(current_user), class: "dropdown-item" %>
+            <%= link_to "自分の食事記録を見る", user_path(current_user), class: "dropdown-item" %>
+            <%= link_to "プロフィールを編集する", edit_user_path(current_user), class: "dropdown-item" %>
             <% if current_user.admin? %>
               <%= link_to "Delete profile", user_path(current_user), class: "dropdown-item text-danger", method: :delete, data: { confirm: "Are you sure?" } %> 
             <% end %>

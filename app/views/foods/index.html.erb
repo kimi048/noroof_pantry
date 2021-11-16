@@ -6,9 +6,9 @@
     <thead>
       <tr>
         <th scope="col">id</th>
-        <th scope="col">User-id</th>
-        <th scope="col">when-which</th>
-        <th scope="col">Description</th>
+        <th scope="col">Username</th>
+        <th scope="col">いつ</th>
+        <th scope="col">食べたもの</th>
         <th scope="col">Image</th>
         <th scope="col">Handle</th>
       </tr>
@@ -17,7 +17,7 @@
       <% @foods.each do |food| %>
         <tr>
           <th scope="row"><%= food.id %></th>
-          <td><%= food.user_id %></td>
+          <td><%= food.user.username %></td>
           <td><%= food.when %>日<%= whichfood(food.which) %></td>
           <td><%= safe_join(food.description.split("\n"),tag(:br)) %></td>
           <td><% if food.image? %>
@@ -25,7 +25,6 @@
               <% else %>
               <%= image_tag "noimage.png" %>
               <% end %>
-              <%= food.ingredient.id if food.ingredient %>
           </td>
           
           <td>

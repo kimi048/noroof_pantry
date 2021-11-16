@@ -1,6 +1,6 @@
 <div class="container">
   <h1 class="mt-5"><%= @user.username %>さんの食事記録</h1>
-  <% (18..23).each do|date|%>
+  <% (18..24).each do|date|%>
     <% breakfast = @user.foods.where(when: date).where(which:"breakfast").last %>
     <% lunch = @user.foods.where(when: date).where(which:"lunch").last%>
     <% dinner = @user.foods.where(when: date).where(which:"dinner").last %>

@@ -6,4 +6,6 @@ class PagesController < ApplicationController
   end
   def date
   end
+  def recipi
+  end
 end

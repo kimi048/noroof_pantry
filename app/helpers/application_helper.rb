@@ -27,4 +27,13 @@ module ApplicationHelper
       "(土)"
     end
   end
+  def userstatus(user)
+    if user.admin? then
+      "管理者"
+    elsif user.nut? then
+      "管理栄養士"
+    else
+      "ユーザー"
+    end
+  end
 end
