@@ -6,7 +6,7 @@
     <% dinner = @user.foods.where(when: date).where(which:"dinner").last %>
     <% foods =Array[breakfast,lunch,dinner] %>
     
-    <h2 class="mb-2 mt-5"><%= date %>日</h2>
+    <h2 class="mb-2 mt-5"><%= date %>日<%= novdate(date) %></h2>
     <div class="row">
       <% for food in foods do%>
         <div class="col-md-4 col-12">
