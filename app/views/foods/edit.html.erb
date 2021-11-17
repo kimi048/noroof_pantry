@@ -4,7 +4,7 @@
   <%= form_for(@food, url:{controller:'foods', action:'update'}) do |form| %>
     <div class="form-group">
       <label for="username">Username</label>
-      <%= form.text_area :description, {class:"form-control", placeholder:"xxx cal"} %>
+      <%= form.text_area :description, {class:"form-control", placeholder:"xxx cal",rows: 10} %>
       <label for="image">Image</label>
       <%= form.file_field :image %>
       <br>
