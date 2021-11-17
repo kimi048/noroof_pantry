@@ -1,15 +1,16 @@
 <div class="container">
-  <h2>Editing a member profile</h2>
-  <h2>this is id#<%= @food.id %></h2>
+  <h2>食事内容を編集</h2>
+  <h2>#<%= @food.id %></h2>
   <%= form_for(@food, url:{controller:'foods', action:'update'}) do |form| %>
     <div class="form-group">
-      <label for="username">Username</label>
+      <label for="description">食事内容</label>
       <%= form.text_area :description, {class:"form-control", placeholder:"xxx cal",rows: 10} %>
       <label for="image">Image</label>
       <%= form.file_field :image %>
       <br>
-    <%= form.submit "アップデート" ,class:"btn btn-primary" %>
+    
     </div>
+    <%= form.submit "アップデート" ,class:"btn btn-primary" %>
   <% end %>
   
   

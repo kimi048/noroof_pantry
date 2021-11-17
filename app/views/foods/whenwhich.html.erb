@@ -1,7 +1,7 @@
 <div class="container">
-  <h2>whenwhich is here</h2>
-  <p><%= @when %></p>
-  <p><%= @which %></p>
+  <h2>食事を新規追加</h2>
+  <p><%= @when %>日</p>
+  <p><%= whichfood(@which) %></p>
   <div class="row justify-content-center">
   <%= render 'shared/errors', obj: @food %>
   
