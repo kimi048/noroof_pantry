@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user, except: [:new]
+  before_action :require_user, except: [:new,:create]
   def index
     @users=User.all
   end
@@ -32,6 +32,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:notice]="Welcome to NoRooF #{@user.username}"
+      session[:user_id] = @user.id
       redirect_to users_path
     else
       flash.now[:alert] = "エラー発生"
