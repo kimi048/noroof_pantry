@@ -48,8 +48,8 @@ class FoodsController < ApplicationController
   def update
     @food = Food.find(params[:id])
     @food.update(food_params)
-    flash[:notice] = "User was updated successfully."
-    redirect_to foods_path
+    flash[:notice] = "食事内容が更新されました"
+    redirect_to user_path(current_user.id)
   end
   private
   def food_params
