@@ -13,14 +13,14 @@
         <a class="col-12 col-md-3 btn btn-success mr-5 mb-3" href="/foods/<%= n %>/breakfast">朝(新規投稿)</a>
       <% end %>
       <%if lunch then %>
-        <a class="col-12 col-md-3 btn btn-warning mr-5 mb-3" href="/foods/<%= lunch.id %>/edit">朝(編集する)</a>
+        <a class="col-12 col-md-3 btn btn-warning mr-5 mb-3" href="/foods/<%= lunch.id %>/edit">昼(編集する)</a>
       <%else%>
-        <a class="col-12 col-md-3 btn btn-success mr-5 mb-3" href="/foods/<%= n %>/lunch">朝(新規投稿)</a>
+        <a class="col-12 col-md-3 btn btn-success mr-5 mb-3" href="/foods/<%= n %>/lunch">昼(新規投稿)</a>
       <% end %>
       <%if dinner then %>
-        <a class="col-12 col-md-3 btn btn-warning mr-5 mb-3" href="/foods/<%= dinner.id %>/edit">朝(編集する)</a>
+        <a class="col-12 col-md-3 btn btn-warning mr-5 mb-3" href="/foods/<%= dinner.id %>/edit">夜(編集する)</a>
       <%else%>
-        <a class="col-12 col-md-3 btn btn-success mr-5 mb-3" href="/foods/<%= n %>/dinner">朝(新規投稿)</a>
+        <a class="col-12 col-md-3 btn btn-success mr-5 mb-3" href="/foods/<%= n %>/dinner">夜(新規投稿)</a>
       <% end %>
     </div>
     <hr>
