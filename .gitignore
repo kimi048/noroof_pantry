@@ -29,6 +29,7 @@
 /public/assets
 /public/uploads/food/image
 .byebug_history
+/.env 
 #/config/initializers/carrierwave.rb
 
 # Ignore master key for decrypting credentials and more.

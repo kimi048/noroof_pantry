@@ -8,7 +8,8 @@ gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 gem "nokogiri", ">= 1.6.7.rc"
 gem 'carrierwave'
 gem 'rmagick'
-gem 'fog'
+gem 'fog-aws'
+gem 'dotenv-rails'
 #gem 'bootstrap', '~> 4.3.1'
 # Use sqlite3 as the database for Active Record
 
