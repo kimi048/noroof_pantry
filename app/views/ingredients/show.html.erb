@@ -1,18 +1,17 @@
 <h1>Ingredients#show</h1>
-<p>Find me in app/views/ingredients/show.html.erb</p>
 
 <div class="container">
 <h2>this is index page</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">key</th>
-        <th scope="col">val</th>
-      </tr>
-    </thead>
-    <tbody>
-    user4
-      <% @user4.each do |ing| %>
+  <% @user4.each do |ing| %>
+    <% day = 1 %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">user4さん(Nさん)</th>
+          <th scope="col"><%= day %></th>
+        </tr>
+      </thead>
+      <tbody>
         <tr>
           <th scope="row">カロリー</th>
           <td><%= ing.cal %></td>
@@ -65,260 +64,12 @@
           <th scope="row">飽和脂肪酸</th>
           <td><%= ing.fatty %></td>
         </tr>
-        <tr>
+        <tr＞
           <th scope="row">塩分</th>
           <td><%= ing.saltval %></td>
-        </tr>
-      <% end %>
-    </tbody>
-    <hr>
-    <tbody>
-    user5
-      <% @user5.each do |ing| %>
-        <tr>
-          <th scope="row">カロリー</th>
-          <td><%= ing.cal %></td>
-        </tr>
-        <tr>
-          <th scope="row">たんぱく質</th>
-          <td><%= ing.protein %></td>
-        </tr>
-        <tr>
-          <th scope="row">脂質</th>
-          <td><%= ing.lipid %></td>
-        </tr>
-        <tr>
-          <th scope="row">炭水化物</th>
-          <td><%= ing.carbon %></td>
-        </tr>
-        <tr>
-          <th scope="row">カルシウム</th>
-          <td><%= ing.ca %></td>
-        </tr>
-        <tr>
-          <th scope="row">鉄</th>
-          <td><%= ing.fe %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンA</th>
-          <td><%= ing.v_a %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンE</th>
-          <td><%= ing.v_e %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンB1</th>
-          <td><%= ing.v_b1 %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンB2</th>
-          <td><%= ing.v_b2 %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンC</th>
-          <td><%= ing.v_c %></td>
-        </tr>
-        <tr>
-          <th scope="row">食物繊維</th>
-          <td><%= ing.fiber %></td>
-        </tr>
-        <tr>
-          <th scope="row">飽和脂肪酸</th>
-          <td><%= ing.fatty %></td>
-        </tr>
-        <tr>
-          <th scope="row">塩分</th>
-          <td><%= ing.saltval %></td>
-        </tr>
-      <% end %>
-    </tbody>
-    <hr>
-    <tbody>
-    user6
-      <% @user6.each do |ing| %>
-        <tr>
-          <th scope="row">カロリー</th>
-          <td><%= ing.cal %></td>
-        </tr>
-        <tr>
-          <th scope="row">たんぱく質</th>
-          <td><%= ing.protein %></td>
-        </tr>
-        <tr>
-          <th scope="row">脂質</th>
-          <td><%= ing.lipid %></td>
-        </tr>
-        <tr>
-          <th scope="row">炭水化物</th>
-          <td><%= ing.carbon %></td>
-        </tr>
-        <tr>
-          <th scope="row">カルシウム</th>
-          <td><%= ing.ca %></td>
-        </tr>
-        <tr>
-          <th scope="row">鉄</th>
-          <td><%= ing.fe %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンA</th>
-          <td><%= ing.v_a %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンE</th>
-          <td><%= ing.v_e %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンB1</th>
-          <td><%= ing.v_b1 %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンB2</th>
-          <td><%= ing.v_b2 %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンC</th>
-          <td><%= ing.v_c %></td>
-        </tr>
-        <tr>
-          <th scope="row">食物繊維</th>
-          <td><%= ing.fiber %></td>
-        </tr>
-        <tr>
-          <th scope="row">飽和脂肪酸</th>
-          <td><%= ing.fatty %></td>
-        </tr>
-        <tr>
-          <th scope="row">塩分</th>
-          <td><%= ing.saltval %></td>
-        </tr>
-      <% end %>
-    </tbody>
-    <hr>
-    <tbody>
-    user7
-      <% @user7.each do |ing| %>
-        <tr>
-          <th scope="row">カロリー</th>
-          <td><%= ing.cal %></td>
-        </tr>
-        <tr>
-          <th scope="row">たんぱく質</th>
-          <td><%= ing.protein %></td>
-        </tr>
-        <tr>
-          <th scope="row">脂質</th>
-          <td><%= ing.lipid %></td>
-        </tr>
-        <tr>
-          <th scope="row">炭水化物</th>
-          <td><%= ing.carbon %></td>
-        </tr>
-        <tr>
-          <th scope="row">カルシウム</th>
-          <td><%= ing.ca %></td>
-        </tr>
-        <tr>
-          <th scope="row">鉄</th>
-          <td><%= ing.fe %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンA</th>
-          <td><%= ing.v_a %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンE</th>
-          <td><%= ing.v_e %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンB1</th>
-          <td><%= ing.v_b1 %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンB2</th>
-          <td><%= ing.v_b2 %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンC</th>
-          <td><%= ing.v_c %></td>
-        </tr>
-        <tr>
-          <th scope="row">食物繊維</th>
-          <td><%= ing.fiber %></td>
-        </tr>
-        <tr>
-          <th scope="row">飽和脂肪酸</th>
-          <td><%= ing.fatty %></td>
-        </tr>
-        <tr>
-          <th scope="row">塩分</th>
-          <td><%= ing.saltval %></td>
-        </tr>
-      <% end %>
-    </tbody>
-    <hr>
-    <tbody>
-    user8
-      <% @user8.each do |ing| %>
-        <tr>
-          <th scope="row">カロリー</th>
-          <td><%= ing.cal %></td>
-        </tr>
-        <tr>
-          <th scope="row">たんぱく質</th>
-          <td><%= ing.protein %></td>
-        </tr>
-        <tr>
-          <th scope="row">脂質</th>
-          <td><%= ing.lipid %></td>
-        </tr>
-        <tr>
-          <th scope="row">炭水化物</th>
-          <td><%= ing.carbon %></td>
-        </tr>
-        <tr>
-          <th scope="row">カルシウム</th>
-          <td><%= ing.ca %></td>
-        </tr>
-        <tr>
-          <th scope="row">鉄</th>
-          <td><%= ing.fe %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンA</th>
-          <td><%= ing.v_a %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンE</th>
-          <td><%= ing.v_e %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンB1</th>
-          <td><%= ing.v_b1 %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンB2</th>
-          <td><%= ing.v_b2 %></td>
-        </tr>
-        <tr>
-          <th scope="row">ビタミンC</th>
-          <td><%= ing.v_c %></td>
-        </tr>
-        <tr>
-          <th scope="row">食物繊維</th>
-          <td><%= ing.fiber %></td>
-        </tr>
-        <tr>
-          <th scope="row">飽和脂肪酸</th>
-          <td><%= ing.fatty %></td>
-        </tr>
-        <tr>
-          <th scope="row">塩分</th>
-          <td><%= ing.saltval %></td>
-        </tr>
-      <% end %>
-    </tbody>
-    <hr>
-  </table>
+        </tr＞
+      </tbody>
+    </table>
+    <% day++ %>
+  <% end %>
 </div>
