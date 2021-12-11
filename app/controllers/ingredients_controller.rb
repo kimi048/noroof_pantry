@@ -6,6 +6,18 @@ class IngredientsController < ApplicationController
 
   def show
     @ingredients=Ingredient.all
+    @user4=[]
+    @user5=[]
+    @user6=[]
+    @user7=[]
+    @user8=[]
+    (18..24).each do |num|
+      @user4.concat([Food.where(user_id: 4).where(when: num).where(which: "dinner").last.ingredient])
+      @user5.concat([Food.where(user_id: 5).where(when: num).where(which: "dinner").last.ingredient])
+      @user6.concat([Food.where(user_id: 6).where(when: num).where(which: "dinner").last.ingredient])
+      @user7.concat([Food.where(user_id: 7).where(when: num).where(which: "dinner").last.ingredient])
+      @user8.concat([Food.where(user_id: 8).where(when: num).where(which: "dinner").last.ingredient])
+    end
   end
   def edit
     @ingredient = Ingredient.find(params[:id])
